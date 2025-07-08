@@ -1,0 +1,742 @@
+/* Font optimalization */
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  font-size: calc(0.625rem + 0.41666666666666663vw);
+}
+
+@media screen and (max-width:1920px) {
+  html {
+    font-size: calc(0.625rem + 0.41666666666666674vw);
+  }
+}
+
+@media screen and (max-width:1440px) {
+  html {
+    font-size: calc(0.8126951092611863rem + 0.20811654526534862vw);
+  }
+}
+
+@media screen and (max-width:479px) {
+  html {
+    font-size: calc(0.7494769874476988rem + 0.8368200836820083vw);
+  }
+}
+
+::-moz-selection {
+  /* Code for Firefox */
+  color: #FFFFFF;
+  background: #E51F5C;
+}
+
+::selection {
+  color: #FFFFFF;
+  background: #E51F5C;
+}
+
+/* lenis */
+
+html.lenis {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+/* Basis setup */
+.btn-animate-chars-text {
+  overflow: hidden;
+  position: relative;
+  display: inline-block;
+}
+
+.btn-animate-chars-text span {
+  display: inline-block;
+  position: relative;
+  text-shadow: 0 1.3em currentColor;
+  transform: translateY(0);
+  transition: transform 0.4s cubic-bezier(0.625, 0.05, 0, 1);
+  opacity: 1;
+}
+
+/* Hover effect op alle knoppen tegelijk */
+.btn-menu:hover .btn-animate-chars-text span,
+.btn-primary:hover .btn-animate-chars-text span,
+.btn-cta:hover .btn-animate-chars-text span,
+.btn-secondary:hover .btn-animate-chars-text span,
+.btn-secondary-count:hover .btn-animate-chars-text span,
+.btn-link:hover .btn-animate-chars-text span,
+.btn-primary-count:hover .btn-animate-chars-text span {
+
+  transform: translateY(-1.3em);
+}
+
+.btn-animate-chars__bg,
+.btn-secondary-animate-chars__bg {
+  inset: 0;
+  transition: inset 0.4s cubic-bezier(0.625, 0.05, 0, 1);
+}
+
+.btn-menu:hover .btn-secondary-animate-chars__bg,
+.btn-primary:hover .btn-animate-chars__bg,
+.btn-cta:hover .btn-animate-chars__bg,
+.btn-secondary:hover .btn-secondary-animate-chars__bg,
+.btn-secondary-count:hover .btn-secondary-animate-chars__bg,
+.btn-link:hover .btn-secondary-animate-chars__bg,
+.btn-primary-count:hover .btn-secondary-animate-chars__bg {
+  inset: 0.125em;
+}
+
+/* heading effect */
+.title-text {
+  font-feature-settings: "titl" 1;
+}
+
+/* heading gradient */
+.gradient-text {
+  background: linear-gradient(111deg, #FFF 56.87%, #E51F5C 103.83%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gradient-sliver-text {
+  background: var(--Sliver-stroke, linear-gradient(270deg, rgba(255, 255, 255, 0.05) -20%, rgba(255, 255, 255, 0.62) 75.76%, rgba(255, 255, 255, 0.05) 123.64%));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.spacer-logos {
+  pointer-events: none;
+}
+
+.is-closed .menu-p {
+  opacity: 0;
+}
+
+.btn-menu .menu-p.is-menu-text {
+  opacity: 0
+}
+
+.btn-menu .menu-p.is-close-text {
+  opacity: 1
+}
+
+.btn-menu.is-closed .menu-p.is-menu-text {
+  opacity: 1
+}
+
+.btn-menu.is-closed .menu-p.is-close-text {
+  opacity: 0
+}
+
+.menu_component {
+  opacity: 0
+}
+
+.btn-menu.is-closed {
+  pointer-events: none;
+}
+
+.btn-menu.is-menu.is-closed {
+  pointer-events: auto;
+}
+
+/* Niice logo */
+.credits {
+  --color: #D4D4D4;
+  margin-left: auto;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  width: 68px;
+  height: 24px;
+  color: #0C1C25;
+  color: var(--color);
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  align-self: center;
+  z-index: 0;
+}
+
+.credits-smile {
+  width: 22px;
+  height: 16px;
+  position: relative;
+  transform: rotate(0deg);
+  transition: transform .2s ease;
+}
+
+.credits-text {
+  width: 46px;
+  height: 16px;
+  position: relative;
+  overflow: hidden;
+  transition: width .3s ease;
+  transform-origin: left;
+  /* <-- belangrijk! */
+}
+
+.eye,
+.smile,
+.iice {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/* Hover in */
+.credits.hover-in .credits-smile {
+  animation: smile .8s ease;
+  transform: rotate(90deg);
+  transition-delay: .8s;
+}
+
+.credits.hover-in .credits-text {
+  width: 0;
+  transition: width .3s .7s ease;
+}
+
+.credits.hover-in .eye {
+  animation: wink .2s .25s cubic-bezier(0, 0, 1, 1);
+}
+
+/* Hover out */
+.credits.hover-out .credits-smile {
+  animation: smile-reverse .8s ease;
+  transform: rotate(0deg);
+  transition-delay: .8s;
+}
+
+.credits.hover-out .credits-text {
+  width: 46px;
+  transition: width .3s .7s ease;
+}
+
+.credits.hover-out .eye {
+  animation: wink .2s .25s cubic-bezier(0, 0, 1, 1);
+}
+
+/* Animaties */
+@keyframes smile {
+  0% {
+    transform: rotate(0deg) translateX(0);
+  }
+
+  25% {
+    transform: rotate(2deg) translateX(-4px);
+  }
+
+  50% {
+    transform: rotate(12deg) translateX(0);
+  }
+
+  75% {
+    transform: rotate(90deg);
+  }
+
+  100% {
+    transform: rotate(90deg);
+  }
+}
+
+@keyframes smile-reverse {
+  0% {
+    transform: rotate(90deg) translateX(0);
+  }
+
+  25% {
+    transform: rotate(92deg) translateX(-4px);
+  }
+
+  50% {
+    transform: rotate(102deg) translateX(0);
+  }
+
+  75% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes wink {
+  50% {
+    transform: scale(.125, 1.25);
+  }
+}
+
+.line {
+  display: inline-block;
+  overflow: hidden;
+}
+
+.animate .line {
+  transform: translateY(0);
+  /* fallback als GSAP niet laadt */
+}
+
+#canvas-target canvas {
+  position: relative;
+  top: -1px;
+  left: -1px;
+  right: -1px;
+  bottom: -1px;
+  max-width: unset;
+  pointer-events: all;
+  max-width: calc(100% + 2px);
+  max-height: calc(100% + 2px);
+  min-width: calc(100% + 2px);
+  min-height: calc(100% + 2px);
+}
+
+/* Navigatie */
+.nav {
+  transition: transform 1s ease, padding 1s ease;
+  transform: translateY(0%) rotate(0.001deg);
+  padding: 2em 2.5rem;
+}
+
+/* Shrink nav when scrolling started */
+[data-scrolling-started="true"] .nav {
+  padding: 1em 2.5rem;
+}
+
+/* Tablet en kleiner: nav padding maximaal 1rem */
+@media screen and (max-width: 991px) {
+  .nav {
+    padding: 1rem 1rem;
+  }
+
+  [data-scrolling-started="true"] .nav {
+    padding: 0.5rem 1rem;
+  }
+}
+
+/* Move nav out of window when scrolling down */
+[data-scrolling-started="true"][data-scrolling-direction="down"] .nav {
+  transform: translateY(-100%) rotate(0.001deg);
+}
+
+/* Change background to filled when scrolling started */
+.nav__inner {
+  transition: background-color 1s ease;
+  background-color: transparent;
+}
+
+[data-scrolling-started="true"] .nav__inner {
+  background-color: #fff;
+}
+
+/* Custom video player */
+.vimeo-lightbox__player {
+  transition: all 0.3s cubic-bezier(0.625, 0.05, 0, 1);
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(0.9) rotate(0.001deg) translateX(0);
+}
+
+.vimeo-lightbox[data-vimeo-activated="true"] .vimeo-lightbox__player {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1) rotate(0.001deg) translateX(0);
+}
+
+/* Dark BG */
+.vimeo-lightbox__bg {
+  transition: all 0.3s cubic-bezier(0.625, 0.05, 0, 1);
+  opacity: 0;
+  visibility: hidden;
+}
+
+.vimeo-lightbox[data-vimeo-activated="loading"] .vimeo-lightbox__bg,
+.vimeo-lightbox[data-vimeo-activated="true"] .vimeo-lightbox__bg {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Close Button */
+.vimeo-lightbox__close {
+  transition: all 0.5s cubic-bezier(0.625, 0.05, 0, 1);
+  opacity: 0;
+  visibility: hidden;
+}
+
+.vimeo-lightbox[data-vimeo-activated="true"] .vimeo-lightbox__close {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Cover */
+.vimeo-lightbox[data-vimeo-update-size="cover"] .vimeo-lightbox__calc-wrap {
+  height: 100%;
+}
+
+.vimeo-lightbox[data-vimeo-update-size="cover"] [data-vimeo-lightbox-player] {
+  width: 100%;
+  min-width: 100%;
+  max-width: 100%;
+  height: 100%;
+  min-height: 100%;
+  max-height: 100%;
+}
+
+/* Placeholder */
+.vimeo-lightbox[data-vimeo-loaded="true"] .vimeo-lightbox__placeholder {
+  opacity: 0;
+}
+
+/* Dark (Overlay) */
+.vimeo-lightbox[data-vimeo-playing="false"] .vimeo-lightbox__dark {
+  opacity: 0.33;
+}
+
+.vimeo-lightbox[data-vimeo-activated="false"][data-vimeo-playing="false"] .vimeo-lightbox__dark {
+  opacity: 0;
+}
+
+.vimeo-lightbox[data-vimeo-activated="true"][data-vimeo-loaded="true"] .vimeo-lightbox__dark {
+  opacity: 0;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .vimeo-lightbox[data-vimeo-hover="true"]:hover .vimeo-lightbox__dark {
+    opacity: 0.33 !important;
+  }
+}
+
+/* Pause */
+.vimeo-lightbox .vimeo-lightbox__pause {
+  display: none;
+}
+
+.vimeo-lightbox[data-vimeo-playing="true"] .vimeo-lightbox__pause {
+  display: flex;
+}
+
+.vimeo-lightbox .vimeo-lightbox__pause .vimeo-lightbox__btn {
+  opacity: 0;
+}
+
+.vimeo-lightbox[data-vimeo-activated="true"][data-vimeo-playing="false"] .vimeo-lightbox__pause .vimeo-lightbox__btn,
+.vimeo-lightbox[data-vimeo-activated="true"][data-vimeo-hover="true"]:hover .vimeo-lightbox__pause .vimeo-lightbox__btn {
+  opacity: 1;
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .vimeo-lightbox[data-vimeo-activated="true"][data-vimeo-playing="true"] .vimeo-lightbox__pause .vimeo-lightbox__btn {
+    opacity: 0 !important;
+  }
+}
+
+/* Play */
+.vimeo-lightbox[data-vimeo-playing="true"] .vimeo-lightbox__play {
+  opacity: 0;
+}
+
+/* Loading */
+.vimeo-lightbox .vimeo-lightbox__loading {
+  opacity: 0;
+}
+
+.vimeo-lightbox[data-vimeo-playing="true"] .vimeo-lightbox__loading {
+  opacity: 1;
+}
+
+.vimeo-lightbox[data-vimeo-playing="true"][data-vimeo-loaded="true"] .vimeo-lightbox__loading {
+  opacity: 0;
+}
+
+/* Interface */
+.vimeo-lightbox .vimeo-lightbox__interface {
+  opacity: 0;
+}
+
+.vimeo-lightbox[data-vimeo-activated="false"][data-vimeo-playing="false"] .vimeo-lightbox__interface {
+  opacity: 1;
+}
+
+.vimeo-lightbox .vimeo-lightbox__interface * {
+  pointer-events: all;
+  /* Make children of div clickable by user */
+}
+
+.vimeo-lightbox[data-vimeo-activated="true"][data-vimeo-playing="false"] .vimeo-lightbox__interface,
+.vimeo-lightbox[data-vimeo-activated="true"][data-vimeo-hover="true"]:hover .vimeo-lightbox__interface {
+  opacity: 1;
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .vimeo-lightbox[data-vimeo-activated="true"][data-vimeo-playing="true"] .vimeo-lightbox__interface {
+    opacity: 0 !important;
+  }
+}
+
+/* Interface - Variables */
+.vimeo-lightbox {
+  --timeline-rounded-corners: 0.75rem;
+  --timeline-dot-height: 0.75em;
+  --timeline-dot-color: #E51F5C;
+  --progress-bg: rgba(239, 238, 236, 0.2);
+  --progress-fill-bg: #E51F5C;
+  --progress-height: 0.2em;
+}
+
+/* Interface - Timeline */
+.vimeo-lightbox progress::-webkit-progress-bar {
+  border-radius: var(--timeline-rounded-corners);
+  background-color: var(--progress-bg);
+  box-shadow: 0;
+}
+
+.vimeo-lightbox progress::-webkit-progress-value {
+  background: var(--progress-fill-bg);
+}
+
+.vimeo-lightbox progress::-moz-progress-bar {
+  border-radius: var(--timeline-rounded-corners);
+  background: var(--progress-fill-bg);
+  box-shadow: 0;
+}
+
+.vimeo-lightbox progress::-ms-fill {
+  border-radius: var(--timeline-rounded-corners);
+}
+
+/* Interface - Range */
+.vimeo-lightbox [type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+}
+
+.vimeo-lightbox [type="range"]:focus {
+  outline: none;
+}
+
+.vimeo-lightbox [type="range"]::-ms-track {
+  width: 100%;
+  cursor: pointer;
+  background-color: transparent;
+  border-color: transparent;
+  color: transparent;
+}
+
+.vimeo-lightbox [type="range"]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: var(--progress-height);
+  cursor: pointer;
+  background-color: var(--progress-bg);
+  border-radius: var(--timeline-rounded-corners);
+  background-color: transparent;
+  border-color: transparent;
+  color: transparent;
+}
+
+.vimeo-lightbox [type="range"]::-webkit-slider-thumb {
+  box-shadow: 0;
+  height: var(--timeline-dot-height);
+  width: var(--timeline-dot-height);
+  border-radius: var(--timeline-rounded-corners);
+  background-color: var(--timeline-dot-color);
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: calc((var(--progress-height) / 2) - (var(--timeline-dot-height) / 2));
+}
+
+.vimeo-lightbox [type="range"]::-webkit-slider-runnable-track,
+.vimeo-lightbox [type="range"]:focus::-webkit-slider-runnable-track {
+  background-color: transparent;
+  border-color: transparent;
+  color: transparent;
+}
+
+.vimeo-lightbox [type="range"]::-moz-range-track {
+  width: 100%;
+  height: var(--progress-height);
+  cursor: pointer;
+  background: var(--progress-bg);
+  border-radius: 0;
+  border: 0;
+  border-radius: var(--timeline-rounded-corners);
+  overflow: hidden;
+  opacity: 1 !important;
+}
+
+.vimeo-lightbox [type="range"]::-moz-range-thumb {
+  box-shadow: 0;
+  border: 0;
+  height: var(--timeline-dot-height);
+  width: var(--timeline-dot-height);
+  border-radius: var(--timeline-rounded-corners);
+  background: var(--timeline-dot-color);
+  cursor: pointer;
+  box-shadow: 0;
+}
+
+/* Interface - Mute */
+.vimeo-lightbox .vimeo-lightbox__mute svg:nth-child(2),
+.vimeo-lightbox[data-vimeo-muted="true"] .vimeo-lightbox__mute svg:nth-child(1) {
+  display: none;
+}
+
+.vimeo-lightbox .vimeo-lightbox__mute svg:nth-child(1),
+.vimeo-lightbox[data-vimeo-muted="true"] .vimeo-lightbox__mute svg:nth-child(2) {
+  display: block;
+}
+
+/* Interface - Fullscreen */
+.vimeo-lightbox .vimeo-lightbox__fullscreen svg:nth-child(2),
+.vimeo-lightbox[data-vimeo-fullscreen="true"] .vimeo-lightbox__fullscreen svg:nth-child(1) {
+  display: none;
+}
+
+.vimeo-lightbox .vimeo-lightbox__fullscreen svg:nth-child(1),
+.vimeo-lightbox[data-vimeo-fullscreen="true"] .vimeo-lightbox__fullscreen svg:nth-child(2) {
+  display: block;
+}
+
+/* VIDEO PLACEHOLDER HOMEPAGE */
+.vimeo-bg[data-vimeo-activated="true"][data-vimeo-loaded="true"] .vimeo-bg__placeholder {
+  opacity: 0;
+  transition-delay: 0.2s;
+}
+
+/* Play/Pause */
+.vimeo-bg .vimeo-bg__pause {
+  display: none;
+}
+
+.vimeo-bg[data-vimeo-playing="true"] .vimeo-bg__pause {
+  display: flex;
+}
+
+.vimeo-bg[data-vimeo-playing="true"] .vimeo-bg__pause,
+.vimeo-bg[data-vimeo-playing="false"] .vimeo-bg__play {
+  opacity: 1;
+}
+
+.vimeo-bg[data-vimeo-playing="true"] .vimeo-bg__play,
+.vimeo-bg[data-vimeo-playing="false"] .vimeo-bg__pause {
+  opacity: 0;
+}
+
+/* EXPERTISE LINKS */
+.list-item-content {
+  transition: opacity 0.3s ease;
+}
+
+.list-item-content:hover .list-item-content {
+  opacity: 0.5;
+}
+
+.list-item-content:hover {
+  opacity: 1 !important;
+}
+
+.section_title {
+  pointer-events: none;
+}
+
+.pin-spacer {
+  pointer-events: none;
+}
+
+/* Whatsapp-styling */
+.whatsapp-block,
+.chat-message {
+  opacity: 0;
+  transform: scale(0.95);
+  transition: opacity 1s ease-out, transform 1s ease-out;
+  display: none;
+  /* Begin als verborgen */
+}
+
+.whatsapp-block.show,
+.chat-message.show {
+  opacity: 1;
+  transform: scale(1);
+  display: flex;
+}
+
+.chat-buttons.hide {
+  opacity: 0;
+  transition: opacity 0.5s ease-out;
+}
+
+/* Filter TEAM Button */
+.filter-btn {
+  transition: color 0.6s cubic-bezier(0.625, 0.05, 0, 1), background-color 0.6s cubic-bezier(0.625, 0.05, 0, 1);
+}
+
+.filter-btn[data-filter-status="active"] {
+  background-color: #E51F5C;
+  color: #FFF;
+}
+
+/* Filter List Item */
+.filter-list__item[data-filter-status="active"] {
+  transition: opacity 0.6s cubic-bezier(0.625, 0.05, 0, 1), transform 0.6s cubic-bezier(0.625, 0.05, 0, 1);
+  transform: scale(1) rotate(0.001deg);
+  opacity: 1;
+  visibility: visible;
+  position: relative;
+}
+
+.filter-list__item[data-filter-status="transition-out"] {
+  transition: opacity 0.45s cubic-bezier(0.625, 0.05, 0, 1), transform 0.45s cubic-bezier(0.625, 0.05, 0, 1);
+  transform: scale(0.9) rotate(0.001deg);
+  opacity: 0;
+  visibility: visible;
+}
+
+.filter-list__item[data-filter-status="not-active"] {
+  transform: scale(0.9) rotate(0.001deg);
+  opacity: 0;
+  visibility: hidden;
+  position: absolute;
+}
+
+/* Form check */
+/* Field: Error */
+[data-validate].is--error input,
+[data-validate].is--error textarea {
+  border-color: #FF4C24;
+}
+
+[data-validate].is--error .form-field-icon.is--error {
+  opacity: 1;
+}
+
+/* Field: Success */
+[data-validate].is--success .form-field-icon.is--success {
+  opacity: 1;
+}
+
+/* Custom Cursor */
+.custom-cursor {
+  transform: scale(0);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  position: fixed;
+  top: 0;
+  left: 0;
+  color: white;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0;
+}
