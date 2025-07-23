@@ -1030,3 +1030,67 @@ window.fsAttributes.push([
     });
   },
 ]);
+
+const form = document.querySelector('form#wf-form-Mailchimp-form');
+if (form) {
+  const startTime = Date.now();
+  const submitButton = form.querySelector('input[type="submit"]');
+
+  // Create or find honeypot
+  let honeypot = form.querySelector('input[name="nickname"]');
+  if (!honeypot) {
+    honeypot = document.createElement('input');
+    honeypot.type = 'text';
+    honeypot.name = 'nickname';
+    honeypot.style.display = 'none';
+    honeypot.tabIndex = -1;
+    honeypot.autocomplete = 'off';
+    form.appendChild(honeypot);
+  }
+
+  function evaluateFormState() {
+    const timeElapsed = Date.now() - startTime;
+    const under3sec = timeElapsed < 3000;
+    const honeypotFilled = honeypot.value.trim() !== '';
+
+    const shouldDisable = under3sec || honeypotFilled;
+
+    if (submitButton) {
+      submitButton.disabled = shouldDisable;
+      submitButton.style.opacity = shouldDisable ? '0.5' : '1';
+      submitButton.style.cursor = shouldDisable ? 'not-allowed' : 'pointer';
+      submitButton.style.pointerEvents = shouldDisable ? 'none' : 'auto';
+    }
+
+    const btnWrapper = form.querySelector('[data-submit]');
+    if (btnWrapper) {
+      btnWrapper.style.opacity = shouldDisable ? '0.5' : '1';
+      btnWrapper.style.pointerEvents = shouldDisable ? 'none' : 'auto';
+    }
+  }
+
+  evaluateFormState();
+
+  const timerInterval = setInterval(() => {
+    evaluateFormState();
+    if (Date.now() - startTime >= 3000) {
+      clearInterval(timerInterval);
+    }
+  }, 500);
+
+  honeypot.addEventListener('input', evaluateFormState);
+  form.addEventListener('input', evaluateFormState);
+
+  form.addEventListener('submit', function (e) {
+    const timeElapsed = Date.now() - startTime;
+    if (timeElapsed < 3000 || honeypot.value.trim() !== '') {
+      e.preventDefault();
+
+      const formBlock = form.closest('.form-block');
+      const errorMessage = formBlock?.querySelector('.w-form-fail');
+      const successMessage = formBlock?.querySelector('.w-form-done');
+      if (successMessage) successMessage.style.display = 'none';
+      if (errorMessage) errorMessage.style.display = 'block';
+    }
+  });
+}
