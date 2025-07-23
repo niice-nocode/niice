@@ -156,19 +156,7 @@ function initMarqueeScrollDirection() {
 }
 initMarqueeScrollDirection();
 
-// Change Page Title on Leave
-const documentTitleStore = document.title;
-const documentTitleOnBlur = "🚀 Lets's Create Digital Happiness"; // Define your custom title here
 
-// Set original title if user is on the site
-window.addEventListener("focus", () => {
-  document.title = documentTitleStore;
-});
-
-// If user leaves tab, set the alternative title
-window.addEventListener("blur", () => {
-  document.title = documentTitleOnBlur;
-});
 
 // Niice-tag
 const credits = document.querySelector('.credits');
