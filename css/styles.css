@@ -740,3 +740,16 @@ html.lenis {
   z-index: 9999;
   opacity: 0;
 }
+
+/* CSS MARQUEE */
+@keyframes translateX { 
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+[data-css-marquee-list] {
+  animation: translateX 30s linear; /* Tweak this number in seconds */
+  animation-iteration-count: infinite;
+  /* Removed: animation-play-state: paused; */
+}
