@@ -1019,6 +1019,8 @@ window.fsAttributes.push([
   },
 ]);
 
+
+  // Formulier Honeypot en Anti-spam
 const form = document.querySelector('form#wf-form-Mailchimp-form');
 if (form) {
   const startTime = Date.now();
@@ -1082,3 +1084,25 @@ if (form) {
     }
   });
 }
+
+  // Pop-up 
+  document.addEventListener("DOMContentLoaded", function () {
+    const popup = document.querySelector(".pop-up");
+    let shown = false;
+
+    function showPopup() {
+      if (shown) return;
+      shown = true;
+      popup.classList.add("visible");
+    }
+
+    // Show after 2 seconds
+    setTimeout(showPopup, 2000);
+
+    // Exit intent
+    document.addEventListener("mouseout", function (e) {
+      if (!e.toElement && !e.relatedTarget && e.clientY < 10) {
+        showPopup();
+      }
+    });
+  });

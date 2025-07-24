@@ -741,7 +741,7 @@ html.lenis {
   opacity: 0;
 }
 
-/* CSS MARQUEE */
+/* CSS POP UP MARQUEE */
 @keyframes translateX { 
   to {
     transform: translateX(-100%);
@@ -752,4 +752,12 @@ html.lenis {
   animation: translateX 30s linear; /* Tweak this number in seconds */
   animation-iteration-count: infinite;
   /* Removed: animation-play-state: paused; */
+}
+
+.pop-up {
+  transform: translateY(-200%);
+  transition: transform 0.525s cubic-bezier(0.625, 0.05, 0, 1);
+}
+.pop-up.visible {
+  transform: translateY(0%);
 }
