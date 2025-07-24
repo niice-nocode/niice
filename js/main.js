@@ -1088,6 +1088,7 @@ if (form) {
   // Pop-up 
   document.addEventListener("DOMContentLoaded", function () {
     const popup = document.querySelector(".pop-up");
+    const cookieBanner = document.querySelector(".cookie-banner");
     let shown = false;
 
     function showPopup() {
@@ -1096,13 +1097,28 @@ if (form) {
       popup.classList.add("visible");
     }
 
-    // Show after 2 seconds
-    setTimeout(showPopup, 2000);
+    function isElementHidden(el) {
+      return !el || window.getComputedStyle(el).display === "none" || el.offsetParent === null;
+    }
 
-    // Exit intent
-    document.addEventListener("mouseout", function (e) {
-      if (!e.toElement && !e.relatedTarget && e.clientY < 10) {
-        showPopup();
-      }
+    function waitForCookieBannerToHide(callback) {
+      const checkInterval = setInterval(() => {
+        if (isElementHidden(cookieBanner)) {
+          clearInterval(checkInterval);
+          callback();
+        }
+      }, 250);
+    }
+
+    waitForCookieBannerToHide(() => {
+      // Toon pop-up na 2 seconden
+      setTimeout(showPopup, 2000);
+
+      // Exit intent (eerder tonen als gebruiker met muis naar boven beweegt)
+      document.addEventListener("mouseout", function (e) {
+        if (!shown && !e.toElement && !e.relatedTarget && e.clientY < 10) {
+          showPopup();
+        }
+      });
     });
   });

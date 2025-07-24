@@ -755,8 +755,9 @@ html.lenis {
 }
 
 .pop-up {
-  transform: translateY(-200%);
+  transform: translateY(200%);
   transition: transform 0.525s cubic-bezier(0.625, 0.05, 0, 1);
+  will-change: transform;
 }
 .pop-up.visible {
   transform: translateY(0%);
